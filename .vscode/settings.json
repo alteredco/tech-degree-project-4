@@ -1,0 +1,16 @@
+{
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "compressed",
+      "extensionName": ".min.css",
+      "savePath": "/dist/css"
+    }
+  ],
+  "extends": ["prettier", "prettier/react"],
+  "prettier.eslintIntegration": true,
+  "prettier.jsxSingleQuote": true,
+  "prettier.printWidth": 120,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "es5",
+  "plugins": ["prettier"]
+}
