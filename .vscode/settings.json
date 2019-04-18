@@ -12,5 +12,8 @@
   "prettier.printWidth": 120,
   "prettier.singleQuote": true,
   "prettier.trailingComma": "es5",
-  "plugins": ["prettier"]
+  "plugins": [
+    "prettier"
+  ],
+  "liveServer.settings.port": 5501
 }
