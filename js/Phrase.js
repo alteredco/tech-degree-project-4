@@ -39,12 +39,12 @@
   }
 
    //display matched letter
+    //if check letter returns match remove hidden class of letter
    showMatchedLetter(inputLetter) {
-     //if check letter returns match remove hidden class of letter
      const phraseLis= document.querySelectorAll("#phrase li");
       phraseLis.forEach(li => {
         if(li.textContent === inputLetter) {
-         li.className -= " hide";
+         li.className -= "hide";
          li.className += " show";
         }
       })

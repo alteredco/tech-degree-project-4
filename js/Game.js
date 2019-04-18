@@ -27,8 +27,8 @@
      this.activePhrase.addPhraseToDisplay();
    }
 
+    //randomly retrieves one of the phrases stored in the phrases array and returns it
    getRandomPhrase() {
-    //this method randomly retrieves one of the phrases stored in the phrases array and returns it
      let randomIndex= Math.floor(Math.random()*(this.phrases.length));
      return this.phrases[randomIndex].phrase; 
    }
@@ -47,7 +47,7 @@
       game.activePhrase.showMatchedLetter(keyButton.textContent);
       if(game.checkForWin() === true){
         console.log("WINNER!!");
-        // game.gameOver()
+        game.gameOver()
       };
     }
    };
@@ -64,21 +64,44 @@
     }
    }
 
+    // checks to see if the player has revealed all of the letters in the active phrase.
    checkForWin() {
-     //this method checks to see if the player has revealed all of the letters in the active phrase.
      let hiddenLis = document.querySelectorAll(".hide");
      if(hiddenLis.length === 0){
        return true
      }
    }
 
-   gameOver() {
     //displays the original start screen overlay
-    $('#overlay').show();
     //updates the overlay h1 element with a friendly win or loss message
-    $('#game-over-message').textContent("GAME OVER...")
     //replaces the overlay’s start CSS class with either the win or lose CSS class.
+   gameOver() {
+    const gameOverMsg = document.querySelector('#game-over-message');
+    const overlay = document.querySelector('#overlay');
+    const gameBtn = document.querySelector('#btn__reset');
+
+    if(this.missed === 5) {
+      gameOverMsg.textContent = "You lost. GAME OVER...";
+      overlay.className = "lose";
+    } else {
+      gameOverMsg.textContent = "YOU ARE A WINNER!";
+      overlay.className = "win";
+    }
+    gameBtn.textContent = "Play Again";
+    $('#overlay').fadeIn();
     
+    this.missed = 0;
+    this.activePhrase = null;
+   
+    const keys = document.querySelectorAll(".key");
+    keys.forEach(key => {
+      key.className = "key";
+      key.setAttribute("disabled", false);
+    })
+    const lifeHearts = document.querySelectorAll(".tries img");
+    lifeHearts.forEach(lifeHeart => {
+      lifeHeart.src = "images/liveHeart.png";
+    })
    }
 
  }
