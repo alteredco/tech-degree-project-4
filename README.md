@@ -14,8 +14,8 @@ I have creates a browser-based, word guessing game: "Phrase Hunter."
 I use JavaScript and OOP (Object-Oriented Programming) to select a random, hidden phrase, which a player tries to guess, by clicking letters on an onscreen keyboard.
 
 Using JavaScript, I've created two JavaScript classes with specific properties and methods: 
-*Game class for managing the game 
-*Phrase class to help with creating an array of Phrase objects
+* Game class for managing the game 
+* Phrase class to help with creating an array of Phrase objects
 
 My code chooses a random phrase, splits the phrase into letters, and puts those letters onto the gameboard.
 
