@@ -21,6 +21,8 @@
    startGame() {
      //hide screen overlay
      $('#overlay').hide();
+     const header = document.querySelector(".header");
+     header.className += " animate-pop-in";
      //calls the getRandomPhrase() method and sets the activePhrase property with the chosen phrase
      this.activePhrase = new Phrase(this.getRandomPhrase());
      console.log(this.activePhrase);
@@ -79,13 +81,16 @@
     const gameOverMsg = document.querySelector('#game-over-message');
     const overlay = document.querySelector('#overlay');
     const gameBtn = document.querySelector('#btn__reset');
-
+    const header = document.querySelector(".header");
+    header.className -= " animate-pop-in";
+    header.className += " animate-pop-out";
+  
     if(this.missed === 5) {
       gameOverMsg.textContent = "You lost. GAME OVER...";
-      overlay.className = "lose";
+      overlay.className = "lose animate-pop-in";
     } else {
       gameOverMsg.textContent = "YOU ARE A WINNER!";
-      overlay.className = "win";
+      overlay.className = "win animate-pop-in";
     }
     gameBtn.textContent = "Play Again";
     $('#overlay').fadeIn();

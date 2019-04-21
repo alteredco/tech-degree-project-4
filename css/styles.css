@@ -1,26 +1,39 @@
 /* Main styles */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&Roboto:300');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Oswald');
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-4rem) scale(.8);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
 
 /* Variables */
 
 :root {
-  --color-win: #78CF82;
-  --color-lose: #D94545;
+  --color-win: #4dbd8e;
+  --color-lose: #df5f56;
   --color-start: #5b85b7;
-  --color-neutral: #445069;
-  --color-neutral-light: #D2D2D2;
-  --color-keys: #37474F;
+  --color-neutral: #816042;
+  --color-neutral-light: rgb(141, 140, 153);
+  --color-keys: #30394b;
   --color-keys-light: #E5E5E5;
   --font-size-large: 60px;
   --font-size-medium: 20px;
   --transition: all .2s ease-in-out;
+  --pop-in: pop-in .6s ease-out forwards;
+  --pop-out: --pop-out .3s ease-out forwards;
 }
 
 /* main */
 
 * {
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Oswald', sans-serif;
 }
 
 body {
@@ -86,10 +99,18 @@ button {
 /* Title */
 
 .header {
-  color: #3a3f58;
-  background-image: "https://i.ibb.co/bg1GdQL/david-laws-411854-unsplash.jpg";
+  color: #8289aa;
 }
 
+.animate-pop-in {
+  animation: var(--pop-in);
+  opacity: 0;
+}
+
+.animate-pop-out {
+  animation: var(--pop-out);
+  opacity: 100;
+}
 
 /* Phrase */
 
@@ -112,7 +133,7 @@ button {
 
 .show {
   color: #fff;
-  background-color: #4ac0d5;
+  background-color: #4a7bd5;
   font-size: 20px;
   height: 65px;
   width: 65px;
@@ -132,14 +153,14 @@ button {
 }
 
 .chosen {
-  background: #3a3f58;
+  background: #4dbd8e;
   border-radius: 5px;
   font-size: var(--font-size-medium);
   color: #FFFFFF;
 }
 
 .wrong {
-  background: #f7a964;
+  background: #df5f56;
   color: #FFFFFF;
 }
 
@@ -180,8 +201,12 @@ button {
   color: #FFF;
 }
 
+.title:hover {
+  color: #f3c808;
+}
+
 .start {
-  background-color: #3a3f58;
+  background-color: #8289aa;
 }
 
 .start a {

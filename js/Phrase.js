@@ -9,7 +9,6 @@
 
    addPhraseToDisplay() {
      const phraseLetters = [...this.phrase];
-     console.log(phraseLetters);
      const phraseDiv = document.querySelector('#phrase');
      const phraseUl = phraseDiv.querySelector('ul');
      //adds letter placeholders for phrase
