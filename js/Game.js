@@ -43,7 +43,7 @@
    }
 
     /**
-     * Handles user interaction with the game. Mouse clicks disable targeted keyboard button and uses the checkLetter() method to check guess. If guess incorrect, 'wrong' class added to the keyboard button and removeLife() method called. If guess correct, 'chosen' class added to keyboard button, showMatchedLetter() method called and checkForWin() method called. If the player has won the game, also call the gameOver() method.
+     * Handles user interaction with the game. Mouse clicks as well as keypresses disable targeted keyboard button and uses the checkLetter() method to check guess. If guess incorrect, 'wrong' class added to the keyboard button and removeLife() method called. If guess correct, 'chosen' class added to keyboard button, showMatchedLetter() method called and checkForWin() method called. If the player has won the game, also call the gameOver() method.
      * @param {object} event  - event listener object
     */
    handleInteraction(event) {
@@ -60,8 +60,25 @@
           return game.gameOver()
         };
       }
-    } else if(event === document.event) {
-      console.log("hello");
+    } else {
+      const pressedKey = (event.key);
+      const keyboard = document.querySelectorAll( "#qwerty button");
+      keyboard.forEach(key => {
+        if(key.innerHTML === pressedKey) {
+          key.setAttribute("disabled", true);
+          console.log(key);
+          if(game.activePhrase.checkLetter(pressedKey) === false) {
+            key.className += " wrong";
+            return game.removeLife();
+          } else {
+            key.className += " chosen";
+            game.activePhrase.showMatchedLetter(pressedKey);
+            if(game.checkForWin() === true) {
+              return game.gameOver();
+            }
+          }
+        }
+      })
     }
    };
 
