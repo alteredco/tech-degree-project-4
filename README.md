@@ -28,6 +28,7 @@ If the player completes the phrase before they run out of guesses, a winning scr
 A player can guess a letter only once. After they’ve guessed a letter, that letter is disabled on the onscreen keyboard.
 
 **FOR EXCEEDS**
+
 Keypress handling has been added to allow a player to select letters by typing. 
 
 I have also restyled the css to include new colors, backgrounds and pure css animations.
