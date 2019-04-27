@@ -21,32 +21,35 @@
     this.activePhrase = null;
    }
 
+   /**
+    * Starts the game by hiding screen overlay, resetting the header class for animation, calling the getRandomPhrase() method and setting the phrase the activePhrase property
+    */
    startGame() {
-     //hide screen overlay
      $('#overlay').hide();
-     //reset header class for animations
      const header = document.querySelector(".header");
      header.className ="";
      header.className += "header animate-pop-in";
-     //calls the getRandomPhrase() method and sets the activePhrase property with the chosen phrase
      this.activePhrase = new Phrase(this.getRandomPhrase());
      console.log(this.activePhrase.phrase.toUpperCase());
      return this.activePhrase.addPhraseToDisplay();
    }
 
-    //randomly retrieves one of the phrases stored in the phrases array and returns it
+    /**
+     * Randomly retrieves one of the phrases stored in the phrases array and returns it
+    */
    getRandomPhrase() {
      let randomIndex= Math.floor(Math.random()*(this.phrases.length));
      return this.phrases[randomIndex].phrase; 
    }
 
+    /**
+     * Handles user interaction with the game. Mouse clicks disable targeted keyboard button and uses the checkLetter() method to check guess. If guess incorrect, 'wrong' class added to the keyboard button and removeLife() method called. If guess correct, 'chosen' class added to keyboard button, showMatchedLetter() method called and checkForWin() method called. If the player has won the game, also call the gameOver() method.
+     * @param {object} event  - event listener object
+    */
    handleInteraction(event) {
      if(event.target.className === "key") {
       const keyButton = event.target;
-      //Disable the selected letter’s onscreen keyboard button.
       keyButton.setAttribute("disabled", true);
-      //If the phrase does not include the guessed letter, add the wrong CSS class to the selected letter's keyboard button and call the removeLife() method.
-      //If the phrase includes the guessed letter, add the chosen CSS class to the selected letter's keyboard button, call the showMatchedLetter() method on the phrase, and then call the checkForWin() method. If the player has won the game, also call the gameOver() method.
       if(game.activePhrase.checkLetter(keyButton.textContent) === false) {
         keyButton.className += " wrong";
         return game.removeLife();
@@ -57,8 +60,8 @@
           return game.gameOver()
         };
       }
-    } else if(event === "keydown") {
-      console.log(key);
+    } else if(event === document.event) {
+      console.log("hello");
     }
    };
 

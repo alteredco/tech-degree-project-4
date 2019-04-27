@@ -30,10 +30,8 @@
    //checks if input letter matches phrase;
    checkLetter(inputLetter) {
     if(this.phrase.includes(inputLetter)) {
-      console.log("true");
       return true;
     } else {
-      console.log("false");
       return false;
     }
   }

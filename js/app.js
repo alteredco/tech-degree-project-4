@@ -3,7 +3,7 @@
  * app.js */
 const game = new Game();
 
-document.querySelector("#btn__reset").addEventListener( "click", function() {
+document.querySelector("#btn__reset").addEventListener( "click", () => {
    game.startGame();
 });
 
