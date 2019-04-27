@@ -7,11 +7,13 @@
     this.phrase = phrase.toLowerCase().replace(/[^\w\s]/g, "");
    }
 
+    /*Adds letter placeholders for phrase to the display
+    */
    addPhraseToDisplay() {
      const phraseLetters = [...this.phrase];
      const phraseDiv = document.querySelector('#phrase');
      const phraseUl = phraseDiv.querySelector('ul');
-     //adds letter placeholders for phrase
+
      phraseLetters.forEach(phraseLetter => {
       const phraseLi = document.createElement('li');
       phraseLetter = phraseLetter.toUpperCase();
@@ -27,7 +29,9 @@
     })
    }
 
-   //checks if input letter matches phrase;
+  /*Adds letter placeholders for phrase to the display
+  @params {string} char - character input by user
+    */
    checkLetter(inputLetter) {
     if(this.phrase.includes(inputLetter)) {
       return true;
@@ -36,8 +40,9 @@
     }
   }
 
-   //display matched letter
-    //if check letter returns match remove hidden class of letter
+   /*Displays matched letter if check letter returns match remove hidden class of letter
+  @params {string} char - character input by user
+    */
    showMatchedLetter(inputLetter) {
      const phraseLis= document.querySelectorAll("#phrase li");
       phraseLis.forEach(li => {

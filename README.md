@@ -9,7 +9,7 @@ Clone the Repo to start:
 Git clone https://github.com/alteredco/techdegree-project-4
 _____________
 # Features:
-I have creates a browser-based, word guessing game: "Phrase Hunter." 
+I have created a browser-based, word guessing game: "Phrase Hunter." 
 
 I use JavaScript and OOP (Object-Oriented Programming) to select a random, hidden phrase, which a player tries to guess, by clicking letters on an onscreen keyboard.
 
@@ -28,4 +28,7 @@ If the player completes the phrase before they run out of guesses, a winning scr
 A player can guess a letter only once. After they’ve guessed a letter, that letter is disabled on the onscreen keyboard.
 
 **FOR EXCEEDS**
+Keypress handling has been added to allow a player to select letters by typing. 
+
+I have also restyled the css to include new colors, backgrounds and pure css animations.
 

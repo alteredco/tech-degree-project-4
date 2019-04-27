@@ -21,8 +21,7 @@
     this.activePhrase = null;
    }
 
-   /**
-    * Starts the game by hiding screen overlay, resetting the header class for animation, calling the getRandomPhrase() method and setting the phrase the activePhrase property
+   /* Starts the game by hiding screen overlay, resetting the header class for animation, calling the getRandomPhrase() method and setting the phrase the activePhrase property
     */
    startGame() {
      $('#overlay').hide();
@@ -34,16 +33,14 @@
      return this.activePhrase.addPhraseToDisplay();
    }
 
-    /**
-     * Randomly retrieves one of the phrases stored in the phrases array and returns it
+    /*Randomly retrieves one of the phrases stored in the phrases array and returns it
     */
    getRandomPhrase() {
      let randomIndex= Math.floor(Math.random()*(this.phrases.length));
      return this.phrases[randomIndex].phrase; 
    }
 
-    /**
-     * Handles user interaction with the game. Mouse clicks as well as keypresses disable targeted keyboard button and uses the checkLetter() method to check guess. If guess incorrect, 'wrong' class added to the keyboard button and removeLife() method called. If guess correct, 'chosen' class added to keyboard button, showMatchedLetter() method called and checkForWin() method called. If the player has won the game, also call the gameOver() method.
+    /*Handles user interaction with the game. Mouse clicks as well as keypresses (FOR EXCEEDS) disable targeted keyboard button and uses the checkLetter() method to check guess. If guess incorrect, 'wrong' class added to the keyboard button and removeLife() method called. If guess correct, 'chosen' class added to keyboard button, showMatchedLetter() method called and checkForWin() method called. If the player has won the game, returns the gameOver() method.
      * @param {object} event  - event listener object
     */
    handleInteraction(event) {
@@ -66,7 +63,6 @@
       keyboard.forEach(key => {
         if(key.innerHTML === pressedKey) {
           key.setAttribute("disabled", true);
-          console.log(key);
           if(game.activePhrase.checkLetter(pressedKey) === false) {
             key.className += " wrong";
             return game.removeLife();
@@ -82,19 +78,22 @@
     }
    };
 
+    /**
+     * Removes a life from the scoreboard, by replacing one of the liveHeart.png images with a lostHeart.png image, tracks number of missed guesses and when five is reached the gameOver() method is returned.
+    */
    removeLife() {
-    //removes a life from the scoreboard, by replacing one of the liveHeart.png images with a lostHeart.png image (found in the images folder) . 
     const lifeHearts = document.querySelectorAll(".tries img");
     lifeHearts[this.missed].src = "images/lostHeart.png";
-    //increments the missed property
+
    this.missed += 1;
-    //If the player has five missed guesses (i.e they're out of lives), then end the game by calling the gameOver() method.
     if(this.missed === 5) {
       return game.gameOver();
     }
    }
 
-    // checks to see if the player has revealed all of the letters in the active phrase.
+    /**
+     * Checks to see if the player has revealed all of the letters in the active phrase.
+    */
    checkForWin() {
      let hiddenLis = document.querySelectorAll(".hide");
      if(hiddenLis.length === 0){
@@ -102,9 +101,9 @@
      }
    }
 
-    //displays the original start screen overlay
-    //updates the overlay h1 element with a friendly win or loss message
-    //replaces the overlay’s start CSS class with either the win or lose CSS class.
+   /**
+     * Ends the game. Displays a screen overlay with either 'win' or 'lost' CSS styling and message as well as the hidden phrase. CSS Animation is added to the header and button (FOR EXCEEDS). Resets the game elements for playing again.
+    */
    gameOver() {
     const gameOverMsg = document.querySelector('#game-over-message');
     const overlay = document.querySelector('#overlay');
@@ -123,13 +122,10 @@
     gameBtn.textContent = "Play Again";
     $('#overlay').fadeIn();
 
-    //reset game elements
     this.missed = 0;
     this.activePhrase = null;
-
     const phraseUl = document.querySelector("ul");
     phraseUl.innerHTML = "";
-   
     const keys = document.querySelectorAll(".key");
     keys.forEach(key => {
       key.className = "key";
