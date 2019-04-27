@@ -13,7 +13,10 @@
         new Phrase("I immediately regret this decision."),
         new Phrase("My apartment smells of rich mahogany."),
         new Phrase("The human torch was denied a bank loan."),
-        new Phrase("Milk was a bad choice.")
+        new Phrase("Milk was a bad choice."),
+        new Phrase("I am in a glass case of emotion."),
+        new Phrase("I love lamp."),
+        new Phrase("I am kind of a big deal.")
     ];
     this.activePhrase = null;
    }
@@ -21,12 +24,14 @@
    startGame() {
      //hide screen overlay
      $('#overlay').hide();
+     //reset header class for animations
      const header = document.querySelector(".header");
-     header.className += " animate-pop-in";
+     header.className ="";
+     header.className += "header animate-pop-in";
      //calls the getRandomPhrase() method and sets the activePhrase property with the chosen phrase
      this.activePhrase = new Phrase(this.getRandomPhrase());
-     console.log(this.activePhrase);
-     this.activePhrase.addPhraseToDisplay();
+     console.log(this.activePhrase.phrase.toUpperCase());
+     return this.activePhrase.addPhraseToDisplay();
    }
 
     //randomly retrieves one of the phrases stored in the phrases array and returns it
@@ -36,21 +41,24 @@
    }
 
    handleInteraction(event) {
-    const keyButton = event.target;
-    //Disable the selected letter’s onscreen keyboard button.
-    keyButton.setAttribute("disabled", true);
-    //If the phrase does not include the guessed letter, add the wrong CSS class to the selected letter's keyboard button and call the removeLife() method.
-    //If the phrase includes the guessed letter, add the chosen CSS class to the selected letter's keyboard button, call the showMatchedLetter() method on the phrase, and then call the checkForWin() method. If the player has won the game, also call the gameOver() method.
-    if(game.activePhrase.checkLetter(keyButton.textContent) === false) {
-      keyButton.className += " wrong";
-      game.removeLife();
-    } else {
-      keyButton.className += " chosen";
-      game.activePhrase.showMatchedLetter(keyButton.textContent);
-      if(game.checkForWin() === true){
-        console.log("WINNER!!");
-        game.gameOver()
-      };
+     if(event.target.className === "key") {
+      const keyButton = event.target;
+      //Disable the selected letter’s onscreen keyboard button.
+      keyButton.setAttribute("disabled", true);
+      //If the phrase does not include the guessed letter, add the wrong CSS class to the selected letter's keyboard button and call the removeLife() method.
+      //If the phrase includes the guessed letter, add the chosen CSS class to the selected letter's keyboard button, call the showMatchedLetter() method on the phrase, and then call the checkForWin() method. If the player has won the game, also call the gameOver() method.
+      if(game.activePhrase.checkLetter(keyButton.textContent) === false) {
+        keyButton.className += " wrong";
+        return game.removeLife();
+      } else {
+        keyButton.className += " chosen";
+        game.activePhrase.showMatchedLetter(keyButton.textContent);
+        if(game.checkForWin() === true){
+          return game.gameOver()
+        };
+      }
+    } else if(event === "keydown") {
+      console.log(key);
     }
    };
 
@@ -62,7 +70,7 @@
    this.missed += 1;
     //If the player has five missed guesses (i.e they're out of lives), then end the game by calling the gameOver() method.
     if(this.missed === 5) {
-      game.gameOver();
+      return game.gameOver();
     }
    }
 
@@ -82,26 +90,30 @@
     const overlay = document.querySelector('#overlay');
     const gameBtn = document.querySelector('#btn__reset');
     const header = document.querySelector(".header");
-    header.className -= " animate-pop-in";
-    header.className += " animate-pop-out";
+    header.className = "";
+    header.className += "header animate-pop-out";
   
     if(this.missed === 5) {
-      gameOverMsg.textContent = "You lost. GAME OVER...";
+      gameOverMsg.textContent = `You lost. '${this.activePhrase.phrase.toUpperCase()}'...`;
       overlay.className = "lose animate-pop-in";
     } else {
-      gameOverMsg.textContent = "YOU ARE A WINNER!";
+      gameOverMsg.textContent = `Winner! '${this.activePhrase.phrase.toUpperCase()}'...`;
       overlay.className = "win animate-pop-in";
     }
     gameBtn.textContent = "Play Again";
     $('#overlay').fadeIn();
-    
+
+    //reset game elements
     this.missed = 0;
     this.activePhrase = null;
+
+    const phraseUl = document.querySelector("ul");
+    phraseUl.innerHTML = "";
    
     const keys = document.querySelectorAll(".key");
     keys.forEach(key => {
       key.className = "key";
-      key.setAttribute("disabled", false);
+      key.removeAttribute("disabled");
     })
     const lifeHearts = document.querySelectorAll(".tries img");
     lifeHearts.forEach(lifeHeart => {

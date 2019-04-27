@@ -3,11 +3,11 @@
  * app.js */
 const game = new Game();
 
-document.querySelector('#btn__reset').addEventListener( 'click', function() {
+document.querySelector("#btn__reset").addEventListener( "click", function() {
    game.startGame();
 });
 
-document.querySelector("#qwerty").addEventListener('click', game.handleInteraction);
-// game.addEventListener('keydown', game.handleInteraction);
+document.querySelector("#qwerty").addEventListener("click", game.handleInteraction);
+document.addEventListener("keydown", game.handleInteraction);
 
 

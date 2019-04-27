@@ -14,6 +14,7 @@
      //adds letter placeholders for phrase
      phraseLetters.forEach(phraseLetter => {
       const phraseLi = document.createElement('li');
+      phraseLetter = phraseLetter.toUpperCase();
       phraseLi.innerHTML = phraseLetter;
       if(phraseLi.innerHTML != ' ') {
         phraseLi.className += "hide";
@@ -42,7 +43,7 @@
    showMatchedLetter(inputLetter) {
      const phraseLis= document.querySelectorAll("#phrase li");
       phraseLis.forEach(li => {
-        if(li.textContent === inputLetter) {
+        if(li.textContent === inputLetter.toUpperCase()) {
          li.className -= "hide";
          li.className += " show";
         }
