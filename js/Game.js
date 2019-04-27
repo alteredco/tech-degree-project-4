@@ -21,7 +21,7 @@
     this.activePhrase = null;
    }
 
-   /* Starts the game by hiding screen overlay, resetting the header class for animation, calling the getRandomPhrase() method and setting the phrase the activePhrase property
+   /* Starts the game by hiding screen overlay, resetting the header class for animation, calling the getRandomPhrase() method and returning the phrase the activePhrase property
     */
    startGame() {
      $('#overlay').hide();
@@ -29,7 +29,6 @@
      header.className ="";
      header.className += "header animate-pop-in";
      this.activePhrase = new Phrase(this.getRandomPhrase());
-     console.log(this.activePhrase.phrase.toUpperCase());
      return this.activePhrase.addPhraseToDisplay();
    }
 
@@ -136,5 +135,4 @@
       lifeHeart.src = "images/liveHeart.png";
     })
    }
-
  }
