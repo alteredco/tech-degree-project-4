@@ -7,6 +7,8 @@ Github repo: https://github.com/alteredco/techdegree-project-4
 
 Clone the Repo to start: 
 Git clone https://github.com/alteredco/techdegree-project-4
+
+Working version of this project can be found here: https://alteredco.github.io/tech-degree-project-4/
 _____________
 # Features:
 I have created a browser-based, word guessing game: "Phrase Hunter." 
